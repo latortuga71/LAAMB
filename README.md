@@ -1,6 +1,5 @@
 # LAAMB (LogicAppAbuserMakesBackdoors)
-Creates backdoor user account by abusing logic app contributor permissions and azuread api connections
-
+Creates backdoor user account by abusing logic app contributor permissions and azuread api connections.
 
 [![asciicast](https://asciinema.org/a/392924.svg)](https://asciinema.org/a/392924)
 
@@ -20,7 +19,9 @@ The catch is that logic app contributor is required on an azuread api connection
 
 
 So the idea is that, there are alot of api connections just laying around that maybe are not even attached to logic apps, and perhaps some of them are the azuread api connection. And you have logic app contributor (or contributor) on alot of resource groups (or subscription wide lol). But you have no azuread permissions.
-Well now you do! this is useful for privesc or just creating a backdoor user.
+Well now you do! this is useful for privesc or just creating a backdoor user. 
+
+Using api connections across resource groups cannot be done via the portal. But it can be done via the api. So in the cases where you have access to an api connection in a resource group with no logic app you can use that connection in a different resource group that has a logic app as long as the api connection and logic app are in the same region.
 
 
 ## Usage
@@ -54,7 +55,6 @@ Execute-LAAMB -subscriptionId "00000-1000-0000--000-1b00000000" -resourceGroup "
 ```
 Execute-LAAMB -subscriptionId "00000-1000-0000--000-1b00000000" -domain mycompany.com
 ```
-
 ## Requirements needed for this to work
 * an azuread api connection must already exist somewhere in the same region as the logic app being targeted (but doesnt have to be in same resource group) <--- Important
 * logic app contributor is needed on both the targeted logic app and the api connection <--- Important
