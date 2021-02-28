@@ -308,10 +308,12 @@ function Get-LogicApps {
     $logicAppArray =  New-Object System.Collections.Generic.List[System.Object]
     $resourceGroups | ForEach-Object {
         Get-AzResource -ResourceGroupName $_.ResourceGroupName  -ResourceType Microsoft.Logic/workflows | ForEach-Object {
-            $lgName = $_.Name
-            Get-AzLogicApp -Name $lgName | ForEach-Object {
-                $logicAppArray.Add($_)
-            }
+            $logicAppArray.Add($(Get-AzLogicApp -Name $_.Name))
+            #$lgName = $_.Name
+            #Get-AzLogicApp -Name $lgName | ForEach-Object {
+            #    $logicAppArray.Add($_)
+            #}
+            # this may break everything, or make it run faster if breaks uncomment and comment line 311 lol
         }
     }
     return $logicAppArray
