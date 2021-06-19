@@ -119,7 +119,7 @@ $global:LogicAppPayload = @'
                   "password": "dawoof7123!!!"
                 },
                 "surname": "backdoor01",
-                "userPrincipalName": "backdoor01@company.io
+                "userPrincipalName": "backdoor01@company.io"
               },
               "host": {
                 "connection": {
